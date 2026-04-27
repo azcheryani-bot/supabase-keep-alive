@@ -2,8 +2,8 @@ name: Supabase Keep Alive
 
 on:
   schedule:
-    - cron: '0 0 * * 0,3'
-  workflow_dispatch:
+    - cron: '0 0 * * 0,3' # خودکار دو بار در هفته
+  workflow_dispatch: # اجرای دستی
 
 jobs:
   ping:
@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Send Request
         run: |
-          curl -i -X GET "https://vhufqhydoengrbuyedu.supabase.co/rest/v1/auth/v1/health" \
+          curl -i -X GET "https://vhufqhydoengrgbuyedu.supabase.co/rest/v1/" \
           -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
