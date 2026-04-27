@@ -1,16 +1,22 @@
-name: Supabase Keep Alive
+name: Supabase Keep Alive (Multi-Project)
 
 on:
   schedule:
-    - cron: '0 0 * * 0,3' # خودکار دو بار در هفته
-  workflow_dispatch: # اجرای دستی
+    - cron: '0 0 * * 0,3'
+  workflow_dispatch:
 
 jobs:
-  ping:
+  ping_projects:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Request
+      - name: Ping Project 1
         run: |
           curl -i -X GET "https://vhufqhydoengrgbuyedu.supabase.co/rest/v1/" \
           -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
+
+      - name: Ping Project 2
+        run: |
+          curl -i -X GET "https://qmxagajsdncdquloxdtd.supabase.co/rest/v1/" \
+          -H "apikey: ${{ secrets.SUPABASE_ANON_KEY_2 }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY_2 }}"
