@@ -2,8 +2,8 @@ name: Supabase Keep Alive
 
 on:
   schedule:
-    - cron: '0 0 * * 0,3' # هر یکشنبه و چهارشنبه خودکار اجرا می‌شود
-  workflow_dispatch: # این خط باعث می‌شود دکمه Run ظاهر شود
+    - cron: '0 0 * * 0,3'
+  workflow_dispatch:
 
 jobs:
   ping:
@@ -11,6 +11,6 @@ jobs:
     steps:
       - name: Send Request
         run: |
-          curl -X GET "https://vhufqhydoengrbuyedu.supabase.co/rest/v1/" \
+          curl -i -X GET "https://vhufqhydoengrbuyedu.supabase.co/rest/v1/auth/v1/health" \
           -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
           -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}"
